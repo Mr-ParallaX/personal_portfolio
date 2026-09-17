@@ -1,5 +1,35 @@
 import React from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, MapPin, Code2 } from 'lucide-react';
+
+const CompanyLogo = ({ type, bg }) => {
+  if (type === 'magic') {
+    return (
+      <div className="company-logo" style={{ background: bg }} title="Enlightened Magic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+          <path d="M5 3v4" />
+          <path d="M19 17v4" />
+          <path d="M3 5h4" />
+          <path d="M17 19h4" />
+        </svg>
+      </div>
+    );
+  }
+  if (type === 'redkross') {
+    return (
+      <div className="company-logo" style={{ background: bg }} title="RedKross Research Foundation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
+          <path d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7V2z" />
+        </svg>
+      </div>
+    );
+  }
+  return (
+    <div className="company-logo" style={{ background: bg }} title="Projects">
+      <Code2 size={20} color="#ffffff" />
+    </div>
+  );
+};
 
 const SKILLS = [
   { name: 'AI-Tools & Chat-GPT Expert', percent: 96 },
@@ -36,22 +66,40 @@ const EDUCATION_ITEMS = [
 
 const EXPERIENCE_ITEMS = [
   {
+    role: 'Web Developer',
+    company: 'Enlightened Magic',
+    employmentType: 'Internship',
+    period: 'Aug 2026 – Present · 2 mos',
+    location: 'Mumbai Metropolitan Region · On-site',
+    description: 'Visual Web Developer and Full-Stack Development',
+    isCurrent: true,
+    logoBg: 'linear-gradient(135deg, #6366f1 0%, #9333ea 100%)',
+    logoType: 'magic',
+    skills: ['Visual Web Development', 'Full-Stack Development', 'React / Frontend', 'Modern UI/UX']
+  },
+  {
+    role: 'Intern',
+    company: 'RedKross Research Foundation',
+    employmentType: 'Internship',
+    period: 'May 2026 – Aug 2026 · 4 mos',
+    location: 'Remote',
+    description: 'Research, technology analysis, and collaborative technical initiatives.',
+    isCurrent: false,
+    logoBg: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
+    logoType: 'redkross',
+    skills: ['Research & Analysis', 'Software Solutions', 'Remote Collaboration']
+  },
+  {
+    role: 'Frontend Web Developer & Creator',
+    company: 'Personal & Freelance Projects',
+    employmentType: 'Projects & Practice',
     period: '2024 – Present',
-    title: 'Frontend Web Developer (Projects & Practice)',
-    description:
-      'Designed and developed responsive websites using modern frontend technologies, React, HTML, CSS, and JavaScript. Focused on clean UI design, structured layouts, component architecture, and improving user experience.'
-  },
-  {
-    period: '2023 – Present',
-    title: 'Creative Designer & Presentation Developer',
-    description:
-      'Created modern resume designs, advertisement templates, business cards, and professional PowerPoint presentations as part of academic and personal projects.'
-  },
-  {
-    period: '2023 – Present',
-    title: 'Computer Science Student & Project Builder',
-    description:
-      'Actively working on academic and self-directed projects in Python, Java, Data Structures, Operating Systems, and Web Applications to strengthen programming and algorithmic problem-solving.'
+    location: 'Mumbai, India · Hybrid',
+    description: 'Developing responsive web applications, Netlify clones, cybersecurity visualizations, and interactive games.',
+    isCurrent: true,
+    logoBg: 'linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)',
+    logoType: 'code',
+    skills: ['React', 'JavaScript', 'HTML5 & CSS3', 'Python Game Dev']
   }
 ];
 
@@ -176,14 +224,49 @@ export default function AboutSection({ onNavigateToContact }) {
                   <div className="timeline-box padd-15">
                     <div className="timeline shadow-dark">
                       {EXPERIENCE_ITEMS.map((item, idx) => (
-                        <div className="timeline-item" key={idx}>
+                        <div className="timeline-item experience-timeline-item" key={idx}>
                           <div className="circle-dot" />
-                          <h3 className="timeline-date">
-                            <Calendar size={14} className="timeline-icon" />
-                            <span>{item.period}</span>
-                          </h3>
-                          <h4 className="timeline-title">{item.title}</h4>
-                          <p className="timeline-text">{item.description}</p>
+                          <div className="experience-header">
+                            <CompanyLogo type={item.logoType} bg={item.logoBg} />
+                            <div className="experience-info">
+                              <div className="role-title-row">
+                                <h4 className="timeline-title">{item.role}</h4>
+                                <span className="badge-pill">{item.employmentType}</span>
+                                {item.isCurrent && (
+                                  <span className="badge-pill badge-current">
+                                    <span className="current-dot" />
+                                    Present
+                                  </span>
+                                )}
+                              </div>
+                              <p className="timeline-company">{item.company}</p>
+                              <div className="experience-meta-row">
+                                <span className="meta-item">
+                                  <Calendar size={13} className="meta-icon" />
+                                  <span>{item.period}</span>
+                                </span>
+                                <span className="meta-item">
+                                  <MapPin size={13} className="meta-icon" />
+                                  <span>{item.location}</span>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="exp-desc-box">
+                            <Code2 size={16} className="exp-desc-icon" />
+                            <span>{item.description}</span>
+                          </div>
+
+                          {item.skills && (
+                            <div className="exp-skills-row">
+                              {item.skills.map((skill, sIdx) => (
+                                <span key={sIdx} className="exp-skill-tag">
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
