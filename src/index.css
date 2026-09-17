@@ -1621,14 +1621,35 @@ h3.my-profession {
     margin-top: -4px;
   }
 
-  /* Subtitle / Role */
+  /* Subtitle / Role with dynamic typing */
   .mobile-role {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 19px;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-black-700);
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--text-black-900);
     margin-bottom: 20px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .mobile-role-prefix {
+    color: var(--text-black-900);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  .mobile-role .typing {
+    color: var(--skin-color);
+    font-weight: 700;
+  }
+
+  .mobile-role .cursor-blink {
+    color: var(--skin-color);
+    font-weight: 400;
+    margin-left: 2px;
   }
 
   /* Bio */

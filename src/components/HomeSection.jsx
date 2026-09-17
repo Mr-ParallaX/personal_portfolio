@@ -154,9 +154,11 @@ export default function HomeSection({ onNavigateToAbout, onNavigateToPortfolio }
             <span className="mobile-last-name">Jamkhandi</span>
           </h1>
 
-          {/* Subtitle / Role */}
+          {/* Subtitle / Role with dynamic typing */}
           <h2 className="mobile-role">
-            <span className="mobile-role-text">Creative Designer</span>
+            <span className="mobile-role-prefix">I'm a </span>
+            <span className="typing">{currentText}</span>
+            <span className="cursor-blink">|</span>
           </h2>
 
           {/* Bio text */}
