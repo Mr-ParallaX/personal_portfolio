@@ -91,7 +91,7 @@ export default function AboutSection({ onNavigateToContact }) {
                     <p>Birthday : <span>28 May 2007</span></p>
                   </div>
                   <div className="info-item padd-15">
-                    <p>Age : <span>18</span></p>
+                    <p>Age : <span>19</span></p>
                   </div>
                   <div className="info-item padd-15">
                     <p>Degree : <span>B.Sc Computer Science</span></p>
